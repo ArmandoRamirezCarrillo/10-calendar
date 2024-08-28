@@ -1,3 +1,4 @@
+import { Link as RouterLink } from 'react-router-dom';
 import { Button, Grid2, Link, TextField } from '@mui/material';
 import { AuthLayout } from '../layout/AuthLayout';
 import './LoginPage.css';
@@ -24,7 +25,7 @@ export const LoginPage = () => {
                         </Button>
                     </Grid2>
                     <Grid2 container direction='row' justifyContent='end'>
-                        <Link>
+                        <Link component={RouterLink} color='inherit' to='/auth/register'>
                             <Create/> Crear Cuenta
                         </Link>
                     </Grid2>
