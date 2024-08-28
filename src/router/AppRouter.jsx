@@ -1,6 +1,6 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { LoginPage } from "../auth"
-import { CalendarPage } from "../calendar";
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { LoginPage } from '../auth'
+import { CalendarPage } from '../calendar';
 
 const routerLogin = {
     path: '/auth/*',
@@ -13,7 +13,7 @@ const routerCalendar = {
 }
 
 export const AppRouter = () => {
-    const authStatus = 'authenticated';
+    const authStatus = 'not-authenticated';
 
     const router = createBrowserRouter([
         authStatus === 'not-authenticated' ? routerLogin : routerCalendar

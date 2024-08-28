@@ -1,78 +1,35 @@
+import { Button, Grid2, Link, TextField } from '@mui/material';
+import { AuthLayout } from '../layout/AuthLayout';
 import './LoginPage.css';
+import { Create, Login } from '@mui/icons-material';
+
 
 export const LoginPage = () => {
     return (
-        <div className="container login-container">
-            <div className="row">
-                <div className="col-md-6 login-form-1">
-                    <h3>Ingreso</h3>
-                    <form>
-                        <div className="form-group mb-2">
-                            <input 
-                                type="text"
-                                className="form-control"
-                                placeholder="Correo"
-                            />
-                        </div>
-                        <div className="form-group mb-2">
-                            <input
-                                type="password"
-                                className="form-control"
-                                placeholder="Contraseña"
-                            />
-                        </div>
-                        <div className="d-grid gap-2">
-                            <input 
-                                type="submit"
-                                className="btnSubmit"
-                                value="Login" 
-                            />
-                        </div>
-                    </form>
-                </div>
-
-                <div className="col-md-6 login-form-2">
-                    <h3>Registro</h3>
-                    <form>
-                        <div className="form-group mb-2">
-                            <input
-                                type="text"
-                                className="form-control"
-                                placeholder="Nombre"
-                            />
-                        </div>
-                        <div className="form-group mb-2">
-                            <input
-                                type="email"
-                                className="form-control"
-                                placeholder="Correo"
-                            />
-                        </div>
-                        <div className="form-group mb-2">
-                            <input
-                                type="password"
-                                className="form-control"
-                                placeholder="Contraseña" 
-                            />
-                        </div>
-
-                        <div className="form-group mb-2">
-                            <input
-                                type="password"
-                                className="form-control"
-                                placeholder="Repita la contraseña" 
-                            />
-                        </div>
-
-                        <div className="d-grid gap-2">
-                            <input 
-                                type="submit" 
-                                className="btnSubmit" 
-                                value="Crear cuenta" />
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+        <AuthLayout title='Login'>
+            <form action="">
+                <Grid2 container alignItems='center' justifyContent='center'>
+                    <Grid2 xs={12} sx={{mt:2}}>
+                        <TextField label='correo' type='email' placeholder='correo@dominio.com' fullWidth name='email' value=''/>
+                    </Grid2>
+                    <Grid2 xs={12} sx={{mt:2}}>
+                        <TextField label='password' type='password' placeholder='Contraseña' fullWidth name='password'/>
+                    </Grid2>
+                </Grid2>
+                <Grid2 container alignItems='center' justifyContent='center' spacing={2} sx={{mb:2, mt:1}}>
+                    <Grid2 xs={12} sx={{mt:2}}>
+                        <Button type='submit' variant='contained' fullWidth>
+                            <Login/>
+                            Login
+                        </Button>
+                    </Grid2>
+                    <Grid2 container direction='row' justifyContent='end'>
+                        <Link>
+                            <Create/> Crear Cuenta
+                        </Link>
+                    </Grid2>
+                </Grid2>
+            </form>
+        </AuthLayout>
     )
 }
