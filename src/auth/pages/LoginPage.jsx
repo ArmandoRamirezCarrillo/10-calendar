@@ -4,11 +4,16 @@ import { AuthLayout } from '../layout/AuthLayout';
 import './LoginPage.css';
 import { Create, Login } from '@mui/icons-material';
 
+const onSubmit = (event) =>{
+    event.preventDefault();
+    console.log('Btn Login');
+}
+
 
 export const LoginPage = () => {
     return (
         <AuthLayout title='Login'>
-            <form action="">
+            <form onSubmit={onSubmit}>
                 <Grid2 container alignItems='center' justifyContent='center'>
                     <Grid2 xs={12} sx={{mt:2}}>
                         <TextField label='correo' type='email' placeholder='correo@dominio.com' fullWidth name='email' value=''/>
