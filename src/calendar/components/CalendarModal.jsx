@@ -3,7 +3,7 @@ import DatePicker, { registerLocale } from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { es } from 'date-fns/locale/es';
 import 'sweetalert2/dist/sweetalert2.min.css';
-import { useCheckModal } from '../../hooks';
+import { useCheckModal, useUiStore } from '../../hooks';
 
 registerLocale('es', es)
 
@@ -22,10 +22,11 @@ Modal.setAppElement('#root');
 
 export const CalendarModal = () => {
 
-    const {isOpen, onCloseModal, onSubmit,formValues, onDateChange, titleClass, onInputChange} = useCheckModal();
+    const {onCloseModal, onSubmit,formValues, onDateChange, titleClass, onInputChange} = useCheckModal();
+    const {isDateModalOpen} = useUiStore();
 
     return (
-    <Modal isOpen={isOpen}
+    <Modal isOpen={isDateModalOpen}
     onRequestClose={onCloseModal}
     style={customStyles}
     className="modal"

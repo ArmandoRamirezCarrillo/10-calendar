@@ -3,7 +3,6 @@ import { useMemo, useState } from 'react';
 import Swal from 'sweetalert2';
 
 export const useCheckModal = () => {
-    const [isOpen, setIsOpen] = useState(true);
     const [formSubmitted, setFormSubmitted] = useState(false);
 
     const [formValues, setFormValues] = useState({
@@ -34,7 +33,6 @@ export const useCheckModal = () => {
 
     const onCloseModal = () => {
         console.log('Cerrando modal');
-        setIsOpen(false);
     }
 
     const onSubmit = (event) => {
@@ -50,6 +48,6 @@ export const useCheckModal = () => {
     }
 
     return {
-        isOpen, onCloseModal, onSubmit,formValues, onDateChange, titleClass, onInputChange
+        onCloseModal, onSubmit,formValues, onDateChange, titleClass, onInputChange
     }
 }
