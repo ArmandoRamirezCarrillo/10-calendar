@@ -22,12 +22,12 @@ Modal.setAppElement('#root');
 
 export const CalendarModal = () => {
 
-    const {onCloseModal, onSubmit,formValues, onDateChange, titleClass, onInputChange} = useCheckModal();
-    const {isDateModalOpen} = useUiStore();
+    const {onSubmit,formValues, onDateChange, titleClass, onInputChange} = useCheckModal();
+    const {isDateModalOpen, closeDateModal} = useUiStore();
 
     return (
     <Modal isOpen={isDateModalOpen}
-    onRequestClose={onCloseModal}
+    onRequestClose={closeDateModal}
     style={customStyles}
     className="modal"
     overlayClassName="modal-fondo"

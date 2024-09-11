@@ -1,13 +1,18 @@
 import { addHours, differenceInSeconds } from 'date-fns';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import Swal from 'sweetalert2';
+import { useCalendarStore } from './useCalendarStore';
+import { useUiStore } from './useUiStore';
 
 export const useCheckModal = () => {
+    const {activeEvent, startSavingEvent} = useCalendarStore();
+    const {closeDateModal} = useUiStore();
+
     const [formSubmitted, setFormSubmitted] = useState(false);
 
     const [formValues, setFormValues] = useState({
-        title: 'Armando',
-        notes: 'Ramirez',
+        title: '',
+        notes: '',
         start: new Date(),
         end: addHours(new Date(),2),
     })
@@ -16,6 +21,13 @@ export const useCheckModal = () => {
         if(!formSubmitted) return ''
         return(formValues.title.length > 0) ? '' : 'is-invalid';
     }, [formValues.title, formSubmitted])
+
+    useEffect(() => {
+      if(activeEvent !== null){
+        setFormValues({...activeEvent})
+      }
+    }, [activeEvent])
+    
 
     const onInputChange = ({target}) =>{
         setFormValues({
@@ -31,11 +43,7 @@ export const useCheckModal = () => {
         })
     }
 
-    const onCloseModal = () => {
-        console.log('Cerrando modal');
-    }
-
-    const onSubmit = (event) => {
+    const onSubmit = async(event) => {
         event.preventDefault();
         setFormSubmitted(true);
         const difference = differenceInSeconds(formValues.end, formValues.start);
@@ -45,9 +53,13 @@ export const useCheckModal = () => {
         }
         if(formValues.title.length <= 0) return;
             console.log(formValues);
+
+        await startSavingEvent(formValues);
+        closeDateModal();
+        setFormSubmitted(false);
     }
 
     return {
-        onCloseModal, onSubmit,formValues, onDateChange, titleClass, onInputChange
+        onSubmit,formValues, onDateChange, titleClass, onInputChange
     }
 }
