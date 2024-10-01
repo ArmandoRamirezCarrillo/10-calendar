@@ -34,9 +34,9 @@ const AppRouterCalendar = [
 export const AppRouter = () => {
     const authStatus = 'not-authenticated';
 
-    const router = createBrowserRouter([
+    const router = createBrowserRouter(
         authStatus === 'not-authenticated' ? AppRouterAuth : AppRouterCalendar
-    ]);
+    );
 
     // const router = createBrowserRouter(AppRouters);
 

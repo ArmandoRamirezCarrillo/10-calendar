@@ -3,23 +3,34 @@ import { Button, Grid2, Link, TextField } from '@mui/material';
 import { AuthLayout } from '../layout/AuthLayout';
 import './LoginPage.css';
 import { Create, Login } from '@mui/icons-material';
+import { useAuthStore, useForm } from '../../hooks';
 
-const onSubmit = (event) =>{
-    event.preventDefault();
-    console.log('Btn Login');
+const loginFormFields = {
+    loginEmail: '',
+    loginPassword: ''
 }
 
 
 export const LoginPage = () => {
+
+    const {startLogin} = useAuthStore();
+
+    const {loginEmail, loginPassword, onInputChange: onLoginInputChange} = useForm(loginFormFields);
+
+    const loginSubmit = (event) =>{
+        event.preventDefault();
+        startLogin({email: loginEmail, password: loginPassword});
+    }
+    
     return (
         <AuthLayout title='Login'>
-            <form onSubmit={onSubmit}>
+            <form onSubmit={loginSubmit}>
                 <Grid2 container alignItems='center' justifyContent='center'>
                     <Grid2 xs={12} sx={{mt:2}}>
-                        <TextField label='correo' type='email' placeholder='correo@dominio.com' fullWidth name='email' value=''/>
+                        <TextField label='correo' type='email' placeholder='correo@dominio.com' fullWidth name='loginEmail' value={loginEmail} onChange={onLoginInputChange}/>
                     </Grid2>
                     <Grid2 xs={12} sx={{mt:2}}>
-                        <TextField label='password' type='password' placeholder='Contraseña' fullWidth name='password'/>
+                        <TextField label='password' type='password' placeholder='Contraseña' fullWidth name='loginPassword' value={loginPassword} onChange={onLoginInputChange}/>
                     </Grid2>
                 </Grid2>
                 <Grid2 container alignItems='center' justifyContent='center' spacing={2} sx={{mb:2, mt:1}}>
