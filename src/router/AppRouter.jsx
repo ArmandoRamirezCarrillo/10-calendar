@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom';
 import { authRoutes, AuthRoutes } from '../auth/routes/AuthRoutes';
 import { calendarRouter, CalendarRouter } from '../calendar/routes/CalendarRouter';
 import { useAuthStore } from '../hooks';
@@ -9,6 +9,10 @@ const AppRouterAuth = [
         path: '/auth',
         element: <AuthRoutes/>,
         children: authRoutes
+    },
+    {
+      path: '/',
+      element: <Navigate to={'/auth/login'}/>
     },
 ]
 
